@@ -17,4 +17,9 @@ public class CandidateController {
         model.addAttribute("candidates", candidateRepository.getAll());
         return "candidates/list";
     }
+
+    @GetMapping("/create")
+    public String getCreationPage() {
+        return "candidates/create";
+    }
 }
