@@ -20,12 +20,12 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final AtomicInteger nextId = new AtomicInteger(0);
 
     private MemoryCandidateRepository() {
-        save(new Candidate(0, "George", "No experience", LocalDateTime.now().minusWeeks(1), 1));
-        save(new Candidate(0, "Bob", "Internship", LocalDateTime.now().minusWeeks(2), 1));
-        save(new Candidate(0, "Philipp", "0,5 year experience", LocalDateTime.now().minusWeeks(3), 2));
-        save(new Candidate(0, "William", "1,5 years experience", LocalDateTime.now().minusWeeks(4), 2));
-        save(new Candidate(0, "Vanessa", "2,5 years experience", LocalDateTime.now().minusDays(3), 3));
-        save(new Candidate(0, "Matthew", "5 years experience", LocalDateTime.now().minusDays(12), 3));
+        save(new Candidate(0, "George", "No experience", LocalDateTime.now().minusWeeks(1), 1, 0));
+        save(new Candidate(0, "Bob", "Internship", LocalDateTime.now().minusWeeks(2), 1, 0));
+        save(new Candidate(0, "Philipp", "0,5 year experience", LocalDateTime.now().minusWeeks(3), 2, 0));
+        save(new Candidate(0, "William", "1,5 years experience", LocalDateTime.now().minusWeeks(4), 2, 0));
+        save(new Candidate(0, "Vanessa", "2,5 years experience", LocalDateTime.now().minusDays(3), 3, 0));
+        save(new Candidate(0, "Matthew", "5 years experience", LocalDateTime.now().minusDays(12), 3, 0));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public boolean update(Candidate candidate) {
         return candidates.computeIfPresent(candidate.getId(), (integer, oldCandidate) -> new Candidate(
                 oldCandidate.getId(), candidate.getName(), candidate.getDescription(),
-                candidate.getCreationDate(), candidate.getCityId())) != null;
+                candidate.getCreationDate(), candidate.getCityId(), candidate.getFileId())) != null;
     }
 
     @Override
