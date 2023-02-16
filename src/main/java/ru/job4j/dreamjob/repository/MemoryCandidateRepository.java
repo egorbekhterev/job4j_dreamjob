@@ -17,7 +17,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
-    private final AtomicInteger nextId = new AtomicInteger(1);
+    private final AtomicInteger nextId = new AtomicInteger(0);
 
     private MemoryCandidateRepository() {
         save(new Candidate(0, "George", "No experience", LocalDateTime.now().minusWeeks(1)));
